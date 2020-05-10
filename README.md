@@ -1,3 +1,3 @@
-# forkify
-A food recipe searching web app :stuck_out_tongue:
+## forkify
 
+> A food recipe search web app :stuck_out_tongue:
