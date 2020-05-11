@@ -201,11 +201,11 @@ body {
   text-align: center;
 }
 .loader svg {
-  height: 5.5rem;
-  width: 5.5rem;
+  height: 4rem;
+  width: 4rem;
   fill: var(--semi-dark);
   transform-origin: 44% 50%;
-  animation: rotate 1.5s infinite linear;
+  animation: rotate 1.2s infinite linear;
 }
 
 @keyframes rotate {
