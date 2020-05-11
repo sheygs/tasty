@@ -11,6 +11,17 @@ export const clearRecipesList = () => {
  element.resultList.innerHTML = '';
 };
 
+
+export const shortenTitle  = (title, limit = 16) => {
+   const length = title.length;
+   if (length > limit){
+     title = title.slice(0,limit);
+     title = title.padEnd((title.length + 3), '...');
+     return title;
+   }
+   return title;
+}
+
 export const renderRecipe = recipe => {
   const html =  `
    <li>
@@ -19,7 +30,7 @@ export const renderRecipe = recipe => {
          <img src="${recipe.image_url}">
       </figure>
      <div class="results__data">
-         <h4 class="results__name">${recipe.title}</h4>
+         <h4 class="results__name">${shortenTitle(recipe.title)}</h4>
          <p class="results__author">${recipe.publisher}</p>
      </div>
      </a>
