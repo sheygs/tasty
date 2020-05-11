@@ -24,22 +24,22 @@ const state = {};
   if (query){
      // search object
      state.search = new Search(query);
-     searchView.clearInput();
-
+    
      // disable button to prevent double
      // form submission
      element.searchButton.disabled = true;
 
      // prepare UI for changes
+     searchView.clearInput();
+     searchView.clearRecipesList();
 
      // search for recipes 
      const recipes = await state.search.getRecipe().catch(handleErrors);
 
      element.searchButton.disabled = false;
-     console.log(await state.search.getRecipe());
 
-     // display result on UI
-     searchView.clearRecipesList();
+
+     // display result on UI 
      searchView.renderRecipes(recipes);
   }
   
