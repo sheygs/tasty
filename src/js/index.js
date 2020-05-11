@@ -1,6 +1,6 @@
 import Search from './models/Search';
 import { handleErrors } from '../../handlers/handlers';
-import { element } from './views/base';
+import { element, showLoader, removeLoader } from './views/base';
 import * as searchView from './views/searchView';
 
 /**
@@ -32,6 +32,7 @@ const state = {};
      // prepare UI for changes
      searchView.clearInput();
      searchView.clearRecipesList();
+     showLoader(element.wrapperList);
 
      // search for recipes 
      const recipes = await state.search.getRecipe().catch(handleErrors);
@@ -40,7 +41,9 @@ const state = {};
 
 
      // display result on UI 
+     removeLoader();
      searchView.renderRecipes(recipes);
+     
   }
   
 }
