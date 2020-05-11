@@ -10,7 +10,7 @@ import config from '../../../config/config';
     const result = await axios.get(`${config.cors}${config.baseEndPoint}/search?q=${this.query}`);
     const { data } = result;
     this.result = data.recipes;
-    console.log(this.result);
+    return this.result;
    }
  }
 

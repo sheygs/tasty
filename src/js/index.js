@@ -24,6 +24,7 @@ const state = {};
   if (query){
      // search object
      state.search = new Search(query);
+     searchView.clearInput();
 
      // disable button to prevent double
      // form submission
@@ -32,12 +33,14 @@ const state = {};
      // prepare UI for changes
 
      // search for recipes 
-     await state.search.getRecipe().catch(handleErrors);
+     const recipes = await state.search.getRecipe().catch(handleErrors);
 
      element.searchButton.disabled = false;
      console.log(await state.search.getRecipe());
 
      // display result on UI
+     searchView.clearRecipesList();
+     searchView.renderRecipes(recipes);
   }
   
 }
