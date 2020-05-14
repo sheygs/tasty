@@ -3,7 +3,8 @@ export const element = {
    searchInput: document.querySelector('.search__field'),
    searchButton: document.querySelector('.search__btn'),
    resultList: document.querySelector('.results__list'),
-   wrapperList: document.querySelector('.results')
+   wrapperList: document.querySelector('.results'),
+   resultPerPage: document.querySelector('.results__pages')
 };
 
 
@@ -25,3 +26,5 @@ export const removeLoader = () => {
       loader.style.display = 'none';
    }
 }
+
+

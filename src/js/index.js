@@ -22,7 +22,8 @@ const state = {};
   
   // only proceed if there is a value
   if (query){
-     // search object
+       
+      // search object
      state.search = new Search(query);
     
      // disable button to prevent double
@@ -31,24 +32,28 @@ const state = {};
 
      // prepare UI for changes
      searchView.clearInput();
-     searchView.clearRecipesList();
+     searchView.clearResult();
      showLoader(element.wrapperList);
 
      // search for recipes 
-     const recipes = await state.search.getRecipe().catch(handleErrors);
+     await state.search.getRecipe().catch(handleErrors);
 
      element.searchButton.disabled = false;
 
 
      // display result on UI 
      removeLoader();
-     searchView.renderRecipes(recipes);
-     
+     searchView.renderRecipes(state.search.result);  
   }
-  
+     
 }
 element.searchForm.addEventListener('submit', handleSubmit);
 
+function handleClick(e){
+  const button =  e.target.closest('.btn-inline');
+  const nextPage = Number(button.dataset.goto);
+  searchView.clearResult();
+  searchView.renderRecipes(state.search.result, nextPage);
+}
 
-
-
+element.resultPerPage.addEventListener('click', handleClick);
