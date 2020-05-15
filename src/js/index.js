@@ -1,5 +1,4 @@
 import Search from './models/Search';
-import { handleErrors } from '../../handlers/handlers';
 import { element, showLoader, removeLoader } from './views/base';
 import * as searchView from './views/searchView';
 
@@ -10,10 +9,10 @@ import * as searchView from './views/searchView';
  * - Shopping List
  * - Liked recipes
  */ 
-const state = {};
+ const state = {};
 
 
- async function handleSubmit(e) {
+ const handleSubmit = async (e) => {
 
   e.preventDefault();
 
@@ -21,9 +20,9 @@ const state = {};
   const query = searchView.getInput();
   
   // only proceed if there is a value
-  if (query){
-       
-      // search object
+  if (query) {
+
+     // search object
      state.search = new Search(query);
     
      // disable button to prevent double
@@ -35,18 +34,24 @@ const state = {};
      searchView.clearResult();
      showLoader(element.wrapperList);
 
-     // search for recipes 
-     await state.search.getRecipe().catch(handleErrors);
+    try {
 
+     // search for recipes 
+     await state.search.getRecipe();
      element.searchButton.disabled = false;
 
 
      // display result on UI 
      removeLoader();
      searchView.renderRecipes(state.search.result);  
-  }
-     
+    }
+
+    catch({ message }) {
+      console.info('Something wrong with Search...');
+    }
+  }    
 }
+
 element.searchForm.addEventListener('submit', handleSubmit);
 
 function handleClick(e){
