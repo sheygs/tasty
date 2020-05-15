@@ -11,7 +11,8 @@ import config from '../../../config/config';
     try {
       const result = await axios.get(`${config.cors}${config.baseEndPoint}/search?q=${this.query}`);
       const { data } = result;
-      this.result = data.recipes;
+      const { recipes } = data;
+      this.result = recipes;
     }
     catch({ message }) {
       console.info('Error fetching request 😕');
