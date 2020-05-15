@@ -8,9 +8,15 @@ import config from '../../../config/config';
    }
 
    async getRecipe(){
-    const result = await axios.get(`${config.cors}${config.baseEndPoint}/search?q=${this.query}`);
-    const { data } = result;
-    this.result = data.recipes;
+    try {
+      const result = await axios.get(`${config.cors}${config.baseEndPoint}/search?q=${this.query}`);
+      const { data } = result;
+      this.result = data.recipes;
+    }
+    catch({ message }) {
+      console.info('Error fetching request 😕');
+      alert(message);
+    } 
    }
  }
 
