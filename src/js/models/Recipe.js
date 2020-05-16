@@ -23,7 +23,6 @@ class Recipe {
       this.img = image_url;
       this.url = source_url;
       this.ingredients = ingredients;
-      console.log(result);
 
      } catch({ message }) {
        alert('Error fetching recipe');
@@ -32,7 +31,9 @@ class Recipe {
 
    calculateTime(){
     // assume we have 15 mins for every 3 ingredients
-    
+    const totalIngredients = this.ingredients.length;
+    const period = Math.ceil(totalIngredients / 3);
+    this.time = period * 20;
    }
 
    calculateServings(){
