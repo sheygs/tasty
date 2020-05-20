@@ -58,6 +58,8 @@ const searchController = async (e) => {
 
 element.searchForm.addEventListener('submit', searchController);
 
+
+
 /**
  * 
  * @param {HANDLE BUTTON CLICK} e 
@@ -88,15 +90,16 @@ const recipeController = async () => {
 
      // create the recipe object
      state.recipe = new Recipe(id);
-     
+
      try {
 
-     // get the results from the recipe
+     // get the results from the recipe and parse Ingredients
      await state.recipe.getRecipe();
+     state.recipe.parseIngredients();
 
      state.recipe.calculateTime();
      state.recipe.calculateServings();
-
+     
      // render result to UI
      console.log(state.recipe);
      
