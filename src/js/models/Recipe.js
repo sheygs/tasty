@@ -48,6 +48,7 @@ class Recipe {
 
           const longUnits = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds'];
           const shortUnits = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+          const units = [...shortUnits, 'kg', 'g'];
 
           // 1) Uniform Ingredients
           let ingredient = el.toLowerCase();
@@ -60,7 +61,7 @@ class Recipe {
 
           // 3) Parse ingredients into count, unit and ingredient
           const arrIngredient = ingredient.split(' ');
-          const unitIndex = arrIngredient.findIndex(item => shortUnits.includes(item));
+          const unitIndex = arrIngredient.findIndex(item => units.includes(item));
        
           let objIngredient;
           if (unitIndex >= 0) {
@@ -71,14 +72,16 @@ class Recipe {
             const unit = arrIngredient.splice(unitIndex,1).join('');
             const ingredient = arrIngredient.slice(unitIndex).join(' ');
             const arrCount = arrIngredient.slice(0, unitIndex);
-            let count;
+            
+            let count;            
             if (arrCount.length === 1){
-              if (arrCount[0].includes('+')){
-                count = Number(arrCount[0].replace('+', ''));
-              }
-              else {
-                count = eval(arrCount[0].replace('-', '+'));
-              }
+                if (arrCount[0].includes('+')){
+                  count = Number(arrCount[0].replace('+', ''));
+                }
+                else {
+                  let strCount = arrCount[0].replace('-', '+');
+                  count = eval(strCount).toFixed(2);
+               }
             }
             else {
               count = eval(arrCount.join('+'));

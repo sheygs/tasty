@@ -2,6 +2,7 @@ import Search from './models/Search';
 import Recipe from './models/Recipe';
 import { element, showLoader, removeLoader } from './views/base';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 
 /**
  * Global state of the app
@@ -86,7 +87,9 @@ const recipeController = async () => {
    console.log(id);
    
    if (id) {
-     // prepare UI for changes
+      // prepare UI for changes
+      recipeView.clearRecipe();
+      showLoader(element.recipe);
 
      // create the recipe object
      state.recipe = new Recipe(id);
@@ -101,7 +104,9 @@ const recipeController = async () => {
      state.recipe.calculateServings();
      
      // render result to UI
-     console.log(state.recipe);
+     removeLoader();
+     recipeView.renderRecipe(state.recipe);
+     // console.log(state.recipe)
      
      } catch({ message }) {
        alert(message)
