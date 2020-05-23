@@ -4,7 +4,8 @@ export const element = {
    searchButton: document.querySelector('.search__btn'),
    resultList: document.querySelector('.results__list'),
    wrapperList: document.querySelector('.results'),
-   resultPerPage: document.querySelector('.results__pages')
+   resultPerPage: document.querySelector('.results__pages'),
+   recipe: document.querySelector('.recipe')
 };
 
 
@@ -23,7 +24,7 @@ export const showLoader = parent => {
 export const removeLoader = () => {
    const loader = document.querySelector('.loader');
    if (loader){
-      loader.style.display = 'none';
+      loader.remove();
    }
 }
 
