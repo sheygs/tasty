@@ -13,6 +13,16 @@ export const clearResult = () => {
 };
 
 
+export const highlightRecipe = id => {
+
+  // remove any previous highlighted recipe
+  const links = [...document.querySelectorAll('.results__link')];
+  links.forEach(link => link.classList.remove('results__link--active'));
+
+  // highlight recipe
+  document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+}
+
 export const shortenTitle  = (title, limit = 16) => {
    const length = title.length;
    if (length > limit){

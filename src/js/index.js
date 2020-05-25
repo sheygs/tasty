@@ -87,10 +87,14 @@ const recipeController = async () => {
    console.log(id);
    
    if (id) {
+  
       // prepare UI for changes
       recipeView.clearRecipe();
       showLoader(element.recipe);
 
+     // only highlight SEARCH recipe
+     if (state.search) searchView.highlightRecipe(id);
+     
      // create the recipe object
      state.recipe = new Recipe(id);
 
