@@ -80,7 +80,7 @@ class Recipe {
                 }
                 else {
                   let strCount = arrCount[0].replace('-', '+');
-                  count = eval(strCount).toFixed(2);
+                  count = Number(eval(strCount).toFixed(1));
                }
             }
             else {

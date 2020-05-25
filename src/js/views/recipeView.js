@@ -1,8 +1,36 @@
 import { element } from './base';
+import {Fraction} from 'fractional';
 
 export const clearRecipe = () => {
   element.recipe.innerHTML = '';
 };
+
+const format = count => {
+  // check for a count property on each ingredient
+  // if there isn't return a symbol rather than
+  // an implicit undefined return
+  
+  // count 2 -> 2
+  // count 0.5 -> 1/2
+  // count 2.5 -> 2 1/2
+
+  const [int, dec] = String(count).split('.').map(Number);
+  if (count) {
+    // decimal is 0, simply return int
+    if (!dec || dec === 0) {
+      return int;
+    }
+    else if (int === 0) {
+      const {numerator, denominator} = new Fraction(count);
+      return `${numerator}/${denominator}`
+    }
+    else {
+      const {numerator, denominator} = new Fraction(count - int);
+      return `${int} ${numerator}/${denominator}`
+    }
+  }
+  return '?'
+}
 
 const createIngredient = ingredient => {
   const markUp = `
@@ -10,7 +38,7 @@ const createIngredient = ingredient => {
     <svg class="recipe__icon">
       <use href="img/icons.svg#icon-check"></use>
     </svg>
-    <div class="recipe__count">${ingredient.count}</div>
+    <div class="recipe__count">${format(ingredient.count)}</div>
     <div class="recipe__ingredient">
       <span class="recipe__unit">${ingredient.unit}</span>
       ${ingredient.ingredient}
