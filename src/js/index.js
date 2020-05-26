@@ -119,8 +119,19 @@ const recipeController = async () => {
   }
 };
 
+
 // listen for hashchange and browser load event
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, recipeController));
 
 
-
+// handle clicks on button
+element.recipe.addEventListener('click', e => {
+  console.log(e.target);
+  if (e.target.matches('svg') || e.target.matches('use')){
+      state.recipe.updateServings('dec');
+  }
+  else if (e.target.matches('svg') || e.target.matches('use')){
+    state.recipe.updateServings('inc');
+  }
+  console.log(state.recipe);
+})

@@ -25,6 +25,7 @@ class Recipe {
       this.ingredients = ingredients;
 
      } catch({ message }) {
+       console.log(message);
        alert('Error fetching recipe');
      }
    }

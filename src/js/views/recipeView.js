@@ -25,8 +25,8 @@ const format = count => {
       return `${numerator}/${denominator}`
     }
     else {
-      const fr = new Fraction(count - int);
-      return `${int} ${fr.numerator}/${fr.denominator}`
+      const { numerator, denominator} = new Fraction(count - int);
+      return `${int} ${numerator}/${denominator}`
     }
   }
   return '?'

@@ -9,7 +9,7 @@ import config from '../../../config/config';
 
    async getRecipe(){
     try {
-      const result = await axios.get(`${config.cors}${config.baseEndPoint}/search?q=${this.query}`);
+      const result = await axios.get(`${config.cors}/${config.baseEndPoint}/search?q=${this.query}`);
       const { data } = result;
       const { recipes } = data;
       this.result = recipes;
