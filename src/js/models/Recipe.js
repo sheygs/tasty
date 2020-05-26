@@ -2,12 +2,12 @@ import config from '../../../config/config';
 import axios from 'axios';
 
 class Recipe {
-   constructor(id){
+   constructor(id) {
     this.id = id;
     this.title = '';
     this.author = '';
     this.img = '';
-    this.url = ''
+    this.url = '';
     this.ingredients = [];
    }
 
@@ -15,7 +15,7 @@ class Recipe {
    async getRecipe() {
      try {
 
-      const result = await axios.get(`${config.cors}${config.baseEndPoint}/get?rId=${this.id}`);
+      const result = await axios.get(`${config.cors}/${config.baseEndPoint}/get?rId=${this.id}`);
       const { recipe } = result.data;
       const { title, publisher, image_url, source_url, ingredients } = recipe;
       this.title = title;
@@ -80,7 +80,7 @@ class Recipe {
                 }
                 else {
                   let strCount = arrCount[0].replace('-', '+');
-                  count = Number(eval(strCount).toFixed(1));
+                  count = Number(eval(strCount).toFixed(2));
                }
             }
             else {
@@ -114,6 +114,23 @@ class Recipe {
          return objIngredient;
      });
      this.ingredients = newIngredients;
+   }
+
+   updateServings(type) {
+
+      // this.servings = 4
+      // newServings = 3
+      // count = 1
+      /* decrement */
+      // count  = 1 * 3/4 = 3/4
+      // count =  3/4 * 2/3 = 1/2
+      // count  = 1/2 * 1/2 = 1/4
+
+      const newServings = type === 'inc' ? this.servings + 1 : this.sevings - 1;
+      this.ingredients.forEach(ingredient => {
+          ingredient.count *= (newServings / this.servings);
+      })
+      this.servings = newServings;
    }
 }
 
