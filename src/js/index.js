@@ -139,11 +139,13 @@ element.recipe.addEventListener('click', e => {
       // to avoid negative values
       if (state.recipe.servings > 1){
          state.recipe.updateServings('dec');
+         recipeView.updateServingsIngredients(state.recipe);
       }
   }
   // match button-increase or any child element of button-increase
   else if (e.target.matches('.btn-increase, .btn-increase *')){
-    state.recipe.updateServings('inc');
+      state.recipe.updateServings('inc');
+      recipeView.updateServingsIngredients(state.recipe);
   }
   console.log(state.recipe);
 });
