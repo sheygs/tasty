@@ -81,7 +81,7 @@ export const renderRecipe = recipe => {
                   </svg>
                 </button>
                 <button class="btn-tiny btn-increase">
-                    <svg>
+                  <svg>
                     <use href="img/icons.svg#icon-circle-with-plus"></use>
                   </svg>
                 </button>
