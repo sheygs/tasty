@@ -110,7 +110,7 @@ const recipeController = async () => {
      // render result to UI
      removeLoader();
      recipeView.renderRecipe(state.recipe);
-     // console.log(state.recipe)
+     console.log(state.recipe)
      
      } catch({ message }) {
        alert(message)
@@ -124,14 +124,26 @@ const recipeController = async () => {
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, recipeController));
 
 
-// handle clicks on button
+// Handle recipe button clicks
+
+// we use event delegation and attach the event handler
+// on the recipe container because that's the element
+// there at load time.
 element.recipe.addEventListener('click', e => {
-  console.log(e.target);
-  if (e.target.matches('svg') || e.target.matches('use')){
-      state.recipe.updateServings('dec');
+
+  // match button-decrease or any child element of button-decrease
+  // we use matches() because there's is more than one element
+  // to target
+
+  if (e.target.matches('.btn-decrease, .btn-decrease *')){
+      // to avoid negative values
+      if (state.recipe.servings > 1){
+         state.recipe.updateServings('dec');
+      }
   }
-  else if (e.target.matches('svg') || e.target.matches('use')){
+  // match button-increase or any child element of button-increase
+  else if (e.target.matches('.btn-increase, .btn-increase *')){
     state.recipe.updateServings('inc');
   }
   console.log(state.recipe);
-})
+});
