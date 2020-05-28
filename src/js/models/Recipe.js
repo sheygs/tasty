@@ -87,7 +87,6 @@ class Recipe {
             else {
               count = eval(arrCount.join('+'));
             }
-
             objIngredient = {
               count: count,
               unit: unit,
@@ -95,7 +94,6 @@ class Recipe {
             }
           }
           else if (Number(arrIngredient[0])) {
-
             // No unit, but first element is a number
             objIngredient = {
               count: Number(arrIngredient[0]),
@@ -126,11 +124,15 @@ class Recipe {
       // count  = 1 * 3/4 = 3/4
       // count =  3/4 * 2/3 = 1/2
       // count  = 1/2 * 1/2 = 1/4
-
-      const newServings = type === 'inc' ? this.servings + 1 : this.sevings - 1;
-      this.ingredients.forEach(ingredient => {
-          ingredient.count *= (newServings / this.servings);
-      })
+      
+      const newServings = (type === 'dec') ? this.servings - 1 : this.servings + 1;
+      const mappedIngredients = this.ingredients.map(ing => {
+          return {
+            ...ing,
+            count: ing.count = ing.count * (newServings / this.servings)
+          }
+      });
+      this.ingredients = mappedIngredients;
       this.servings = newServings;
    }
 }
