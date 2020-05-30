@@ -1,5 +1,6 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import { element, showLoader, removeLoader } from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
@@ -149,3 +150,9 @@ element.recipe.addEventListener('click', e => {
   }
   console.log(state.recipe);
 });
+
+
+/**
+ * List Controller
+ */
+ window.l = new List();
