@@ -1,11 +1,11 @@
-class Like {
+class Likes {
    constructor() {
      this.likes = [];
    }
 
    addLike(id, title, author, img) {
       const likeObj = {
-        id: this.likes.length + 1,
+        id,
         title,
         author,
         img
@@ -32,4 +32,4 @@ class Like {
    }
 }
 
-export default Like;
+export default Likes;
