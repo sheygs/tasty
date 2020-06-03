@@ -16,7 +16,7 @@
 
     deleteItem(id) {
       const index = this.items.findIndex(item => item.id === id);
-      const item = [...this.items].splice(index, 1);
+      const item = this.items.splice(index, 1);
       return item;
     }
 
