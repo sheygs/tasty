@@ -6,7 +6,7 @@ export const element = {
    wrapperList: document.querySelector('.results'),
    resultPerPage: document.querySelector('.results__pages'),
    recipe: document.querySelector('.recipe'),
-   list: document.querySelector('.shopping__list')
+   shopping: document.querySelector('.shopping')
 };
 
 
