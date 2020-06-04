@@ -276,7 +276,7 @@ body {
 }
 .likes__panel:hover,
 .likes__field:hover + .likes__panel {
-  visibility: visible;
+  visibility: hidden;
   opacity: 1;
 }
 .likes__icon {
