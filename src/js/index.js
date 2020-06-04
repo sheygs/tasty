@@ -5,6 +5,7 @@ import { element, showLoader, removeLoader } from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
+import * as likesView from './views/likesView';
 import Likes from './models/Likes';
 
 /** 
@@ -113,7 +114,11 @@ const recipeController = async () => {
      
      // render result to UI
      removeLoader();
-     recipeView.renderRecipe(state.recipe);
+     recipeView.renderRecipe(
+       state.recipe,
+       state.likes.isLiked(id)
+    );
+
      console.log(state.recipe)
      
      } catch({ message }) {
@@ -179,38 +184,48 @@ element.shopping.addEventListener('click', e => {
 /**
  * LIKE CONTROLLER
  */
- 
+
+ // TESTING
+state.likes = new Likes();
+likesView.toggleLikeButtonMenu(state.likes.getAllLikes());
+
  const controlLikes = () => {
-    if (!state.like) state.like = new Likes();
+    if (!state.likes) state.likes = new Likes();
     
     const id = state.recipe.id;
 
     // if recipe is not liked
-    if (!state.like.isLiked(id)){
+    if (!state.likes.isLiked(id)){
        // add to the like model
-       state.like.addLike(
+       const newLike = state.likes.addLike(
          id,
          state.recipe.title,
          state.recipe.author,
          state.recipe.img
        )
        // toggle the like button
+       likesView.toggleLikeButton(true);
 
        // update the UI
-       console.log(state.like)
+       likesView.renderLike(newLike);
+      
+       console.log(state.likes)
 
       // if recipe is  liked 
-    } else if (state.like.isLiked(id)) {
+    } else if (state.likes.isLiked(id)) {
 
        // remove from the like model
-       state.like.unLike(id);
+       state.likes.unLike(id);
 
        // untoggle the like button
-
+       likesView.toggleLikeButton(false);
 
        // update the UI
-       console.log(state.like);
+       likesView.deleteLike(id);
+       console.log(state.likes);
     }
+    
+    // likesView.toggleLikeButtonMenu(state.likes.getAllLikes());
  }
 
 

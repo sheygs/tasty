@@ -6,7 +6,9 @@ export const element = {
    wrapperList: document.querySelector('.results'),
    resultPerPage: document.querySelector('.results__pages'),
    recipe: document.querySelector('.recipe'),
-   shopping: document.querySelector('.shopping')
+   shopping: document.querySelector('.shopping'),
+   likesMenu: document.querySelector('.likes__field'),
+   likesList: document.querySelector('.likes__list')
 };
 
 

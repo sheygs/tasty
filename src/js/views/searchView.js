@@ -20,7 +20,7 @@ export const highlightRecipe = id => {
   links.forEach(link => link.classList.remove('results__link--active'));
 
   // highlight recipe
-  document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+  document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');
 }
 
 export const shortenTitle  = (title, limit = 16) => {
