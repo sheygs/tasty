@@ -1,6 +1,6 @@
 import { element } from './base';
 
-export const renderItem = item => {
+export const renderItem = (item) => {
   const html = `
     <li class="shopping__item" data-itemid=${item.id}>
       <div class="shopping__count">
@@ -18,10 +18,9 @@ export const renderItem = item => {
   element.shopping.insertAdjacentHTML('beforeend', html);
 };
 
-
-export const deleteItem = id => {
-   const item = document.querySelector(`[data-itemId="${id}"]`);
-   if (item) { 
+export const deleteItem = (id) => {
+  const item = document.querySelector(`[data-itemId="${id}"]`);
+  if (item) {
     item.remove();
-   }
+  }
 };

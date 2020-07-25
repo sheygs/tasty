@@ -1,35 +1,34 @@
 class Likes {
-   constructor() {
-     this.likes = [];
-   }
+  constructor() {
+    this.likes = [];
+  }
 
-   addLike(id, title, author, img) {
-      const likeObj = {
-        id,
-        title,
-        author,
-        img
-      }
+  addLike(id, title, author, img) {
+    const likeObj = {
+      id,
+      title,
+      author,
+      img,
+    };
 
-      this.likes = [...this.likes, likeObj];
-      return likeObj;
-   }
+    this.likes = [...this.likes, likeObj];
+    return likeObj;
+  }
 
-   unLike(id) {
-       const index = this.likes.findIndex(like => like.id === id);
-       const removedLike = this.likes.splice(index, 1);
-       return removedLike;
-   }
+  unLike(id) {
+    const index = this.likes.findIndex((like) => like.id === id);
+    const removedLike = this.likes.splice(index, 1);
+    return removedLike;
+  }
 
-   isLiked(id) {
-     const index = this.likes.findIndex(likes => likes.id === id);
-     return index >= 0;
-   }
+  isLiked(id) {
+    const index = this.likes.findIndex((likes) => likes.id === id);
+    return index >= 0;
+  }
 
-
-   getAllLikes() {
-     return this.likes.length;
-   }
+  getAllLikes() {
+    return this.likes.length;
+  }
 }
 
 export default Likes;
